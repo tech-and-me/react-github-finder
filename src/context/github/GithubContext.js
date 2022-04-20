@@ -9,17 +9,22 @@ const GITHUB_TOKEN = process.env.REACT_APP_GITHUB_TOKEN;
 export const GithubProvider = ({ children }) => {
   const innitialState = {
     users: [],
-    loading: true,
+    loading: false,
   };
 
   const [state, dispatch] = useReducer(githubReducer, innitialState);
 
-  const fetchUsers = async () => {
-    const response = await fetch(`${GITHUB_URL}/users`, {
-      headers: {
-        Authorization: `token ${GITHUB_TOKEN}`,
-      },
+  //Get search result
+  const searchUsers = async (text) => {
+    setLoading();
+    const params = new URLSearchParams({
+      q: text,
     });
+    // const response = await fetch(`${GITHUB_URL}/users`, {
+    //   headers: {
+    //     Authorization: `token ${GITHUB_TOKEN}`,
+    //   },
+    // });
 
     //*****Method 2: without using global variable
     // const response = await fetch("https://api.github.com/users",{
@@ -29,17 +34,29 @@ export const GithubProvider = ({ children }) => {
     //})
 
     //*****Method 3: Without using global variable and without using token
-    // const response = await fetch("https://api.github.com/users")
+    const response = await fetch(
+      `https://api.github.com/search/users?${params}`
+    );
 
-    const data = await response.json();
-    console.log(data);
+    const { items } = await response.json();
+    console.log(items);
 
     dispatch({
       type: "GET_USERS",
-      payload: data,
+      payload: items,
     });
     //   setUsers(data);
     //   setLoading(false);
+  };
+
+  //Clear users from state
+  const clearUsers = () => {
+    dispatch({ type: "CLEAR_USERS" });
+  };
+
+  //Set Loading
+  const setLoading = () => {
+    dispatch({ type: "SET_LOADING" });
   };
 
   return (
@@ -47,7 +64,8 @@ export const GithubProvider = ({ children }) => {
       value={{
         users: state.users,
         loading: state.loading,
-        fetchUsers,
+        searchUsers,
+        clearUsers,
       }}
     >
       {children}

@@ -1,4 +1,4 @@
-import {useEffect,useContext} from 'react'
+import {useContext} from 'react'
 import Spinner from '../layouts/Spinner';
 import UserItem from './UserItem';
 import GithubContext from '../../context/github/GithubContext';
@@ -6,11 +6,12 @@ import GithubContext from '../../context/github/GithubContext';
 
 const UserResults = () => {
 
-    const {fetchUsers,users,loading} = useContext(GithubContext)
+    const {users,loading} = useContext(GithubContext)
 
-    useEffect(()=>{
-        fetchUsers()
-    },[])
+    //for resting to show 30 users at the start but no longer needed. I have also delete the fetchUser function too.
+    // useEffect(()=>{
+    //     fetchUsers()
+    // },[])
 
 
     if(!loading) {
