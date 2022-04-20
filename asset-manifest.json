@@ -1,0 +1,15 @@
+{
+  "files": {
+    "main.css": "/react-github-finder/static/css/main.59fa3960.css",
+    "main.js": "/react-github-finder/static/js/main.cfd4b493.js",
+    "static/media/spinner.gif": "/react-github-finder/static/media/spinner.11d9cde8ebaeadb07ba7.gif",
+    "static/media/logoWhitePhary.png": "/react-github-finder/static/media/logoWhitePhary.c6d7ba88c0c9cb00f52e.png",
+    "index.html": "/react-github-finder/index.html",
+    "main.59fa3960.css.map": "/react-github-finder/static/css/main.59fa3960.css.map",
+    "main.cfd4b493.js.map": "/react-github-finder/static/js/main.cfd4b493.js.map"
+  },
+  "entrypoints": [
+    "static/css/main.59fa3960.css",
+    "static/js/main.cfd4b493.js"
+  ]
+}
